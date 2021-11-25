@@ -5,9 +5,18 @@ const numberOfGrids = 16;
 const clear = document.querySelector('.clear');
 const div = document.createElement('div');
 const gridInner = document.querySelectorAll('.gridInner');
-
-
+const colorBtns = document.querySelectorAll('.color');
 let currentSize = numberOfGrids;
+let color = 'black';
+
+colorBtns.forEach((colorBtn) => colorBtn.addEventListener('click', (e) => {
+    colorBtns.forEach((colorBtn) => colorBtn.removeAttribute('style', 'background-color: red'));
+    e.target.setAttribute('style', 'background-color: red');
+    let activeColor = e.target.textContent;
+    addBG(activeColor);
+}))
+
+
 
 function setGrid(currentSize) {
     grid.setAttribute('style', `display: grid; grid-template-rows: repeat(${currentSize}, 1fr); grid-template-columns: repeat(${currentSize}, 1fr)`);
@@ -23,11 +32,23 @@ function fillGrid() {
 
 }
 
-function addBG() {
+function addBG(activeColor) {
     const gridInner = document.querySelectorAll('.gridInner');
-
+    let currentColor;
+    if(activeColor==='Random') {
+        function randomColor() {
+            let randomNumber = Math.floor(Math.random()*360 + 1);
+        let randomPercent = Math.floor(Math.random()*100 + 1);
+        currentColor = `hsl(${randomNumber}, ${randomPercent}%, ${randomPercent}%)`;
+        return currentColor;
+        }
+        currentColor = randomColor();
+    }
+    else {
+        currentColor = activeColor;
+    }
     gridInner.forEach((gridInner) => gridInner.addEventListener('mouseover', (e) => {
-        e.target.setAttribute('style', 'background-color: red');
+        e.target.setAttribute('style', `background-color: ${currentColor}`);
     }))
 }
 
@@ -39,11 +60,13 @@ clear.addEventListener('click', () => {
         currentSize = 100;
         alert('Can\'t be higher than 100!');
     }
+    else if(currentSize===0) {
+        currentSize = 16;
+    }
 
     setGrid(currentSize);
     fillGrid();
     addBG();
-
 })
 
 window.onload = () => {

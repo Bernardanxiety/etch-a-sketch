@@ -20,7 +20,7 @@ for (let i=0; i<numberOfDivs; i++) {
 
 divs.forEach((div) => div.addEventListener('mouseover', (e) => {
     let randomColor = Math.floor(Math.random()*100 +1);
-    let randomHsl = Math.floor(Math.random()*255 + 1);
+    let randomHsl = Math.floor(Math.random()*360 + 1);
     e.target.setAttribute(`style`, `background-color: hsl(${randomHsl}, ${randomColor}%, ${randomColor}%)`);
 }))
 

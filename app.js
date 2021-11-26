@@ -11,9 +11,10 @@ let color = 'black';
 
 colorBtns.forEach((colorBtn) => colorBtn.addEventListener('click', (e) => {
     colorBtns.forEach((colorBtn) => colorBtn.removeAttribute('style', 'background-color: red'));
-    e.target.setAttribute('style', 'background-color: red');
+    // e.target.setAttribute('style', 'background-color: red');
     let activeColor = e.target.textContent;
     addBG(activeColor);
+    e.target.setAttribute('style', `background-color: ${color}`);
 }))
 
 
@@ -39,10 +40,12 @@ function addBG(activeColor) {
         function randomColor() {
             let randomNumber = Math.floor(Math.random()*360 + 1);
         let randomPercent = Math.floor(Math.random()*100 + 1);
-        currentColor = `hsl(${randomNumber}, ${randomPercent}%, ${randomPercent}%)`;
+        let anotherPercent = Math.floor(Math.random()*100+1);
+        currentColor = `hsl(${randomNumber}, ${randomPercent}%, ${anotherPercent}%)`;
         return currentColor;
         }
         currentColor = randomColor();
+        console.log(currentColor);
     }
     else {
         currentColor = activeColor;
@@ -50,6 +53,8 @@ function addBG(activeColor) {
     gridInner.forEach((gridInner) => gridInner.addEventListener('mouseover', (e) => {
         e.target.setAttribute('style', `background-color: ${currentColor}`);
     }))
+
+    return color = currentColor;
 }
 
 clear.addEventListener('click', () => {

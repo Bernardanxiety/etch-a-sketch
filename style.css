@@ -5,13 +5,12 @@
 body {
     height: 100vh;
     background-color: hsl(0, 0%, 20%);
-    display: flex;
-    align-items: center;
+    display: grid;
 }
 
 .grid {
-    width: 768px;
-    height: 768px;
+    width: 500px;
+    height: 500px;
     background-color: #fff;
     justify-self: center;
     margin-left: auto;
@@ -44,11 +43,15 @@ body {
 
 .wrapper {
     max-width: 1000px;
-    margin: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: -40rem;
     display: flex;
     align-items: center;
 }
 
-.active {
-    
+.instructions {
+    font-size: 2rem;
+   justify-self: center;
+   align-self: flex-start;
 }

@@ -10,7 +10,13 @@ colorBtns.forEach((colorBtn) => colorBtn.addEventListener('click', setMode));
 
 clear.addEventListener('click', function() {
     const DIVS = document.querySelectorAll('.div');
-    DIVS.forEach((div) => div.style.backgroundColor = '');
+    // DIVS.forEach((div) => div.style.backgroundColor = '');
+    
+    DIVS.forEach(div =>  {
+       const xd = grid.querySelector('.div');
+       xd.remove();
+    });
+
     let newGrid = Number(prompt('How many rows and columns do you want? Capped at 100!'));
 
     if(newGrid > 100) {
